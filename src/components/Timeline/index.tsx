@@ -8,13 +8,15 @@ interface IProps {
   playlists: typeof config.playlists;
 }
 
+type TKey = keyof typeof config.playlists
+
 const Timeline: React.FC<IProps> = ({ playlists }) => {
-  const playlistNames = Object.keys(playlists);
+  const playlistNames = Object.keys(playlists) as TKey[];
 
   return (
     <StyledTimeline>
       {playlistNames.map((playlistName, index) => {
-        const videos: IVideo[] = playlists[playlistName];
+        const videos: IVideo[] = playlists['back-end'];
         return (
           <section key={index}>
             <h2>{playlistName}</h2>
